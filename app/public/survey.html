@@ -17,6 +17,7 @@
 
 <body>
     <div class="container">
+        
         <div class="mx-5 mt-3">
             <h2>Survey questions</h2>
             <p>Here, you'll answer several questions about yourself to determine your closest match!</p>
@@ -29,7 +30,6 @@
             <h5 class="mt-3">Photo URL(Required)</h5>
             <input type="text" id="photo" class="form-control" required>
             <hr>
-
 
             <div class="my-3">
                 <h3>Question 1</h3>
@@ -104,28 +104,51 @@
 
 
 <script type="text/javascript">
+
+    // Testing to see if this 'users' object works
+    var users = [
+        {
+            name: "Bob",
+            photo: "website url",
+            responses: [5, 1, 4, 4, 3]
+        },
+        {
+            name: "Steve",
+            photo: "Steve's website",
+            responses: [3, 5, 1, 1, 2]
+        }
+    ];
+    console.log(users);
+
+
     $(".btn").on('click', function (event) {
         event.preventDefault();
 
         // Creates the array to hold the user's response data
-        var info = [];
-        info.push($("#name").val());
-        info.push($("#photo").val());
+        var userInfo = [];
+        userInfo.name = ($("#name").val());
+        userInfo.photo = ($("#photo").val());
+        userInfo.responses = []
 
         // Cycles through the questions and enters their information into the array
         // Also filters the question responses to enter just an integer
         for (var i = 1; i <= 5; i++) {
             if ($("#question" + i).val() === "1 (Strongly disagree)") {
-                info.push("1");
+                userInfo.responses.push("1");
                 // return;
             }
             else if ($("#question" + i).val() === "5 (Strongly agree)") {
-                info.push("5");
+                userInfo.responses.push("5");
                 // return;
             }
-            else { info.push($("#question" + i).val()); };
+            else { userInfo.responses.push($("#question" + i).val()); };
         }
-        console.log(info);
+        users.push(userInfo);
+
+        // Attempting to clear the fields
+        // $("#name").val() = ""
+        // $("#photo").val() = ""
+        console.log(users);
     })
 
 
