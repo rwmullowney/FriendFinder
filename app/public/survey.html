@@ -9,30 +9,32 @@
     <!-- Load bootstrap -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
     <!-- <script src="main.js"></script> -->
 </head>
 
 <body>
     <div class="container">
-        <div class="mx-5">
+        <div class="mx-5 mt-3">
             <h2>Survey questions</h2>
             <p>Here, you'll answer several questions about yourself to determine your closest match!</p>
             <hr>
 
             <h3>Tell us about yourself:</h3>
-            <h5>Name (Required)</h5>
+            <h5 class="mt-3">Name (Required)</h5>
             <input type="text" id="name" class="form-control" required>
 
-            <h5>Photo URL(Required)</h5>
+            <h5 class="mt-3">Photo URL(Required)</h5>
             <input type="text" id="photo" class="form-control" required>
             <hr>
 
 
             <div class="my-3">
                 <h3>Question 1</h3>
-                <label for="question1">Question 1 content here</label>
-                <select class="form-control" id="question1">
+                <label for="question1">Security is more important than freedom</label>
+                <select class="form-control" id="question1" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
                     <option>3</option>
@@ -44,8 +46,8 @@
 
             <div class="my-3">
                 <h3>Question 2</h3>
-                <label for="question2">Question 2 content here</label>
-                <select class="form-control" id="question2">
+                <label for="question2">The needs of the many outweight the needs of the few</label>
+                <select class="form-control" id="question2" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
                     <option>3</option>
@@ -56,8 +58,8 @@
 
             <div class="my-3">
                 <h3>Question 3</h3>
-                <label for="question3">Question 3 content here</label>
-                <select class="form-control" id="question3">
+                <label for="question3">Impact matters more than intent</label>
+                <select class="form-control" id="question3" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
                     <option>3</option>
@@ -68,8 +70,8 @@
 
             <div class="my-3">
                 <h3>Question 4</h3>
-                <label for="question4">Question 4 content here</label>
-                <select class="form-control" id="question4">
+                <label for="question4">You rarely do something just out of sheer curiosity.</label>
+                <select class="form-control" id="question4" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
                     <option>3</option>
@@ -80,8 +82,8 @@
 
             <div class="my-3">
                 <h3>Question 5</h3>
-                <label for="question5">Question 5 content here</label>
-                <select class="form-control" id="question5">
+                <label for="question5">In a discussion, truth should be more important than people’s sensitivities.</label>
+                <select class="form-control" id="question5" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
                     <option>3</option>
@@ -89,9 +91,43 @@
                     <option>5 (Strongly agree)</option>
                 </select>
             </div>
+
+
+            <hr>
+            <input class="btn btn-primary mb-3" type="submit" value="Submit">
         </div>
     </div>
     </div>
 </body>
 
 </html>
+
+
+<script type="text/javascript">
+    $(".btn").on('click', function (event) {
+        event.preventDefault();
+
+        // Creates the array to hold the user's response data
+        var info = [];
+        info.push($("#name").val());
+        info.push($("#photo").val());
+
+        // Cycles through the questions and enters their information into the array
+        // Also filters the question responses to enter just an integer
+        for (var i = 1; i <= 5; i++) {
+            if ($("#question" + i).val() === "1 (Strongly disagree)") {
+                info.push("1");
+                // return;
+            }
+            else if ($("#question" + i).val() === "5 (Strongly agree)") {
+                info.push("5");
+                // return;
+            }
+            else { info.push($("#question" + i).val()); };
+        }
+        console.log(info);
+    })
+
+
+
+</script>
