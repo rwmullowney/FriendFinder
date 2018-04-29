@@ -17,7 +17,7 @@
 
 <body>
     <div class="container">
-        
+
         <div class="mx-5 mt-3">
             <h2>Survey questions</h2>
             <p>Here, you'll answer several questions about yourself to determine your closest match!</p>
@@ -33,7 +33,7 @@
 
             <div class="my-3">
                 <h3>Question 1</h3>
-                <label for="question1">Security is more important than freedom</label>
+                <label for="question1">Security is more important than freedom.</label>
                 <select class="form-control" id="question1" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
@@ -46,7 +46,7 @@
 
             <div class="my-3">
                 <h3>Question 2</h3>
-                <label for="question2">The needs of the many outweight the needs of the few</label>
+                <label for="question2">The needs of the many outweight the needs of the few.</label>
                 <select class="form-control" id="question2" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
@@ -58,7 +58,7 @@
 
             <div class="my-3">
                 <h3>Question 3</h3>
-                <label for="question3">Impact matters more than intent</label>
+                <label for="question3">You rarely do something just out of sheer curiosity.</label>
                 <select class="form-control" id="question3" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
@@ -67,10 +67,10 @@
                     <option>5 (Strongly agree)</option>
                 </select>
             </div>
-
+            
             <div class="my-3">
                 <h3>Question 4</h3>
-                <label for="question4">You rarely do something just out of sheer curiosity.</label>
+                <label for="question4">Impact matters more than intent.</label>
                 <select class="form-control" id="question4" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
@@ -84,6 +84,66 @@
                 <h3>Question 5</h3>
                 <label for="question5">In a discussion, truth should be more important than people’s sensitivities.</label>
                 <select class="form-control" id="question5" style="width: 200px">
+                    <option>1 (Strongly disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 (Strongly agree)</option>
+                </select>
+            </div>
+
+            <div class="my-3">
+                <h3>Question 6</h3>
+                <label for="question6">It’s okay to lose your temper in certain situations.</label>
+                <select class="form-control" id="question6" style="width: 200px">
+                    <option>1 (Strongly disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 (Strongly agree)</option>
+                </select>
+            </div>
+
+            <div class="my-3">
+                <h3>Question 7</h3>
+                <label for="question7">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+                <select class="form-control" id="question7" style="width: 200px">
+                    <option>1 (Strongly disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 (Strongly agree)</option>
+                </select>
+            </div>
+
+            <div class="my-3">
+                <h3>Question 8</h3>
+                <label for="question8">You feel more energetic after spending time with a group of people.</label>
+                <select class="form-control" id="question8" style="width: 200px">
+                    <option>1 (Strongly disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 (Strongly agree)</option>
+                </select>
+            </div>
+
+            <div class="my-3">
+                <h3>Question 9</h3>
+                <label for="question9">It’s better to have loved and lost than never to have loved at all.</label>
+                <select class="form-control" id="question9" style="width: 200px">
+                    <option>1 (Strongly disagree)</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5 (Strongly agree)</option>
+                </select>
+            </div>
+
+            <div class="my-3">
+                <h3>Question 10</h3>
+                <label for="question10">People can rarely upset you.</label>
+                <select class="form-control" id="question10" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
                     <option>3</option>
@@ -106,19 +166,6 @@
 <script type="text/javascript">
 
     // Testing to see if this 'users' object works
-    var users = [
-        {
-            name: "Bob",
-            photo: "website url",
-            responses: [5, 1, 4, 4, 3]
-        },
-        {
-            name: "Steve",
-            photo: "Steve's website",
-            responses: [3, 5, 1, 1, 2]
-        }
-    ];
-    console.log(users);
 
 
     $(".btn").on('click', function (event) {
@@ -132,7 +179,7 @@
 
         // Cycles through the questions and enters their information into the array
         // Also filters the question responses to enter just an integer
-        for (var i = 1; i <= 5; i++) {
+        for (var i = 1; i <= 10; i++) {
             if ($("#question" + i).val() === "1 (Strongly disagree)") {
                 userInfo.responses.push("1");
                 // return;
