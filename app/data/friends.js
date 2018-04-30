@@ -10,6 +10,5 @@ var users = [
         responses: [3, 5, 1, 1, 2, 5, 2, 4, 3, 3]
     }
 ];
-console.log(users);
 
 module.exports = users;

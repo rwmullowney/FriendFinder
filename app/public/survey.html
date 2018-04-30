@@ -180,8 +180,8 @@
         userInfo.responses = [];
         
         // Clearing the fields
-        $("#name").val("")
-        $("#photo").val("")
+        $("#name").val("");
+        $("#photo").val("");
 
         // Cycles through the questions and enters their information into the array
         // Also filters the question responses to enter just an integer
@@ -197,14 +197,8 @@
             else { userInfo.responses.push($("#question" + i).val()); };
         }
 
-        console.log(userInfo)
-
         // Sending new user info to "users" array in friends.js
         $.post("/api/friends", userInfo)
-
-
-
-        // users.push(userInfo);
     })
 
 
