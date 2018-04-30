@@ -68,7 +68,7 @@
                     <option>5 (Strongly agree)</option>
                 </select>
             </div>
-            
+
             <div class="my-3">
                 <h3>Question 4</h3>
                 <label for="question4">Impact matters more than intent.</label>
@@ -107,7 +107,8 @@
 
             <div class="my-3">
                 <h3>Question 7</h3>
-                <label for="question7">You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+                <label for="question7">You think that everyone’s views should be respected regardless of whether they are supported by facts or
+                    not.</label>
                 <select class="form-control" id="question7" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
@@ -172,11 +173,15 @@
     $(".btn").on('click', function (event) {
         event.preventDefault();
 
-        // Creates the array to hold the user's response data
-        var userInfo = [];
+        // Creates the object to hold the user's response data
+        var userInfo = {};
         userInfo.name = ($("#name").val());
         userInfo.photo = ($("#photo").val());
-        userInfo.responses = []
+        userInfo.responses = [];
+        
+        // Clearing the fields
+        $("#name").val("")
+        $("#photo").val("")
 
         // Cycles through the questions and enters their information into the array
         // Also filters the question responses to enter just an integer
@@ -191,12 +196,15 @@
             }
             else { userInfo.responses.push($("#question" + i).val()); };
         }
-        users.push(userInfo);
 
-        // TODO: Attempting to clear the fields
-        // $("#name").val() = ""
-        // $("#photo").val() = ""
-        console.log(users);
+        console.log(userInfo)
+
+        // Sending new user info to "users" array in friends.js
+        $.post("/api/friends", userInfo)
+
+
+
+        // users.push(userInfo);
     })
 
 
