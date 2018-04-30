@@ -4,8 +4,6 @@ module.exports = function (app) {
 
     app.get("/api/friends", function (req, res) {
         res.json(friendsList)
-        // console.log("minimum difference: ")
-        // console.log(minDiff)
     })
 
     app.post("/api/friends", function (req, res) {
@@ -43,9 +41,12 @@ module.exports = function (app) {
         // Probably do this last so you only compare differences with people already in the 'users' array
         // Sends the user info to the user list in friends.js
         friendsList.push(req.body);
+        res.json(bestMatch);
         
         // Console log the best match for the user
-        console.log(bestMatch);
+        // console.log("Your best match is: " + bestMatch.name);
+        // console.log("Their photo: " + bestMatch.photo)
+        // $("#bestMatch").html("will it work")
     });
 
 };

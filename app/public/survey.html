@@ -6,13 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Load bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
     <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- <link rel="stylesheet" type="text/css" media="screen" href="main.css" /> -->
-    <!-- <script src="main.js"></script> -->
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <!-- Bootstrap js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -108,7 +108,8 @@
             <div class="my-3">
                 <h3>Question 7</h3>
                 <label for="question7">You think that everyone’s views should be respected regardless of whether they are supported by facts or
-                    not.</label>
+                    not.
+                </label>
                 <select class="form-control" id="question7" style="width: 200px">
                     <option>1 (Strongly disagree)</option>
                     <option>2</option>
@@ -156,21 +157,42 @@
 
 
             <hr>
-            <input class="btn btn-primary mb-3" type="submit" value="Submit">
+            <!-- <input class="btn btn-primary mb-3" type="button" value="Submit" data-toggle="modal" data-target="#exampleModal"> -->
+            <button type="button" class="btn btn-primary mb-3" id="submit" data-toggle="modal" data-target="#exampleModal">
+                Submit
+            </button>
         </div>
     </div>
     </div>
-</body>
 
+
+
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Thank you! Here's your closest match:</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="bestMatch">
+              
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </html>
 
 
 <script type="text/javascript">
 
-    // Testing to see if this 'users' object works
-
-
-    $(".btn").on('click', function (event) {
+    $("#submit").on('click', function (event) {
         event.preventDefault();
 
         // Creates the object to hold the user's response data
@@ -178,7 +200,7 @@
         userInfo.name = ($("#name").val());
         userInfo.photo = ($("#photo").val());
         userInfo.responses = [];
-        
+
         // Clearing the fields
         $("#name").val("");
         $("#photo").val("");
@@ -198,7 +220,11 @@
         }
 
         // Sending new user info to "users" array in friends.js
-        $.post("/api/friends", userInfo)
+        $.post("/api/friends", userInfo, function(bestMatch){
+            $("#bestMatch").html("Name: " + bestMatch.name + "<hr>")
+            // TODO Make it so the image doesn't overflow
+            $("#bestMatch").append("Photo: <img style='max-width: 400px' src=" + bestMatch.photo + " alt='A photo of your top match'>" )
+        })
     })
 
 
